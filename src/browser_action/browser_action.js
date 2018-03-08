@@ -14,24 +14,35 @@ $(document).on('ready', () => {
             for (let i = counter, j = 0; i < 2 + counter; i++, j++) {
                 let dayBox = document.getElementById(`day${j}`);
                 let today = Object.entries(data)[i][1];
-                let newDay = document.createElement("div");
-                newDay.className = "day";
-                newDay.appendChild(document.createTextNode(Object.entries(data)[i][0]));
-                dayBox.append(newDay);
+                let newDate = document.createElement("span");
+                newDate.className = "date";
+                
                 for (let k = 0; k < today.length; k++) {
+                    let myData = Object.entries(data)[i][1][k];
+
                     let newEvent = document.createElement("div");
+                    let eventTime = document.createElement("div");
+                    let summ = document.createElement("div");
                     newEvent.className = "event";
-                    newEvent.appendChild(document.createTextNode(Object.entries(data)[i][1][k].summary));
+                    eventTime.className = "eventTime";
+                    summ.className = "summ";
+                    eventTime.appendChild(document.createTextNode(myData.start.dateTime.slice(11,16)));
+                    summ.appendChild(document.createTextNode(myData.summary));
+                    newEvent.appendChild(eventTime);
+                    newEvent.appendChild(summ);
                     dayBox.append(newEvent);
+                   
                 }
+                if (dayBox.id == "day1") {
+                    dayBox.style.display = "none";
+                    newDate.style.display = "none";
+                }
+                newDate.appendChild(document.createTextNode(Object.entries(data)[i][0].slice(0,6)));
+                document.getElementById(`title${j}`).appendChild(newDate);
+
+
             }
-            // console.log(Object.entries(data));
 
-            //console.log('currentTime = ' + currentTime.toString().slice());
-
-            let paste = Object.entries(data)[0];
-            let myCal = new Calendar(data);
-            // document.body.append(JSON.stringify(paste.summary));
             return data;
         }
     });

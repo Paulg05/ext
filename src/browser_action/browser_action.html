@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
 	<link rel="stylesheet" href="browser_action.css">
 	<script src="../../js/jquery/jquery.min.js"></script>
@@ -7,11 +8,15 @@
 
 <body>
 	<div id="mainPopup">
-		<h1 id = "title">Cohort XX Calendar</h1>
-		<div id="container"></div>
-		<div id="day0" class="day"></div>
-		<div id="day1" class="day"></div>
+		<div id="title0" class="title"><span class="titleText">Today is </span></div>
+		<div id="title1" class="title"><span class="titleText">Tomorrow is </span></div>
+		<div id="container">
+			<div id="day0" class="day"></div>
+			<div id="day1" class="day"></div>
+		</div>
+
 	</div>
 </body>
 <script src="browser_action.js"></script>
+
 </html>
