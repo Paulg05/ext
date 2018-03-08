@@ -2,3 +2,7 @@ body {
     background-image: url("bg.jpg");
     font: #fff;
 }
+#container {
+    display: flex;
+    flex-direction: row;
+}

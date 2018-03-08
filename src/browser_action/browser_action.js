@@ -1,4 +1,5 @@
 let schedule;
+let container = document.getElementById("container");
 $(document).on('ready', () => {
     $.ajax({
         type: 'GET',
@@ -10,10 +11,18 @@ $(document).on('ready', () => {
             while (currDate !== Object.entries(data)[counter][0]) {
                 counter++;
             }
-            for (let i = counter; i < 2 + counter; i++) {
+            for (let i = counter, j = 0; i < 2 + counter; i++, j++) {
+                let dayBox = document.getElementById(`day${j}`);
                 let today = Object.entries(data)[i][1];
-                for (let j = 0; j < today.length; j++) {
-                    document.body.append(Object.entries(data)[i][1][j].summary);
+                let newDay = document.createElement("div");
+                newDay.className = "day";
+                newDay.appendChild(document.createTextNode(Object.entries(data)[i][0]));
+                dayBox.append(newDay);
+                for (let k = 0; k < today.length; k++) {
+                    let newEvent = document.createElement("div");
+                    newEvent.className = "event";
+                    newEvent.appendChild(document.createTextNode(Object.entries(data)[i][1][k].summary));
+                    dayBox.append(newEvent);
                 }
             }
             // console.log(Object.entries(data));
