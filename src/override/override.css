@@ -1,8 +1,52 @@
 body {
     background-image: url("bg.jpg");
-    font: #fff;
+    color: #000;
 }
+
+.greeting{
+    color: #9bc3e6;
+}
+
 #container {
     display: flex;
     flex-direction: row;
+    border: 8px #9bc3e6 solid;
+    padding: 6px;
 }
+
+.day{
+    font-size: 25px;
+    color: white;
+}
+
+.event {
+    margin: 5% 0 5% 0;
+    white-space: nowrap;
+}
+
+#day0 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 8%;
+}
+
+#day1 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 8%;
+}
+
+#day2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 8%;
+}
+
+#day3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 8%;
+}
+
+
+
