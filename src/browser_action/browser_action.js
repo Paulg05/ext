@@ -11,6 +11,7 @@ let fbg = document.createElement("img");
 fbg.src = "fbg.jpg";
 let sbg = document.createElement("img");
 sbg.src = "sbg.jpg";
+let wkDay;
 let bgArr = [mbg.src, tbg.src, wbg.src, thbg.src, fbg.src, sbg.src];
 let container = document.getElementById("container");
 $(document).on('ready', () => {
@@ -19,7 +20,7 @@ $(document).on('ready', () => {
         url: 'http://slack-server.elasticbeanstalk.com/calendar/LA/20',
         success: function (data, status) {
             var currentTime = new Date();
-            let wkDay = currentTime.getDay();
+            wkDay = currentTime.getDay();
             console.log(wkDay);
             document.body.style.backgroundImage = `url(${bgArr[wkDay-1]})`;
             let currDate = currentTime.toString().slice(4, 15);
@@ -30,11 +31,9 @@ $(document).on('ready', () => {
             for (let i = counter, j = 0; i < 2 + counter; i++, j++) {
                 let dayBox = document.getElementById(`day${j}`);
                 let today = Object.entries(data)[i][1];
-                let newDate = document.createElement("span");
+                let newDate = document.createElement("div");
                 newDate.className = "date";
                
-                
-                
                 for (let k = 0; k < today.length; k++) {
                     let myData = Object.entries(data)[i][1][k];
 
@@ -52,10 +51,6 @@ $(document).on('ready', () => {
                     
                    
                 }
-                if (dayBox.id == "day1") {
-                    dayBox.style.display = "none";
-                    newDate.style.display = "none";
-                }
                 newDate.appendChild(document.createTextNode(Object.entries(data)[i][0].slice(0,6)));
                 document.getElementById(`title${j}`).appendChild(newDate);
 
@@ -65,5 +60,20 @@ $(document).on('ready', () => {
             return data;
         }
     });
+    $(".btn").hover(function(){
+        $('#title0').toggleClass("tmrw");
+        $('#day0').toggleClass("tmrw");
+        $('#title1').toggleClass("tmrw");
+        $('#day1').toggleClass("tmrw");
+        $('body').css('background-image', `url(${bgArr[wkDay]})`);
+    }, function(){
+        $('#title0').removeClass("tmrw");
+        $('#day0').removeClass("tmrw");
+        $('#title1').removeClass("tmrw");
+        $('#day1').removeClass("tmrw");
+        $('body').css('background-image', `url(${bgArr[wkDay-1]})`);
+    })
 });
+
+
 
